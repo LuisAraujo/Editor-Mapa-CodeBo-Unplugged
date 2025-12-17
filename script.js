@@ -1,5 +1,8 @@
 let mapa = [];
+let mapa2 = [];
 let tamanhoQuadrado = 100;
+
+alert("Atenção: Este editor ainda não armazena informações");
 
 // Referências de imagens
 let imagemInicio = document.getElementById('img-inicio');
@@ -21,7 +24,9 @@ let altura = 0;
 
 // Função para adicionar botões ao mapa
 let imagemSelecionada = null;
+let nivelSelecionado = null;
 const containerBtnn = document.getElementById('container-btnn');
+const container2Btnn = document.getElementById('container2-btnn');
 
 function gerarMapa() {
     largura = document.getElementById('width').value;
@@ -57,8 +62,11 @@ function gerarMapa() {
 function inicializadorArray(largura, altura) {
     for (var x = 0; x < largura; x++) {
         mapa[x] = [];
-        for (var y = 0; y < altura; y++)
+        mapa2[x] = [];
+        for (var y = 0; y < altura; y++){
             mapa[x].push("vazio");
+            mapa2[x].push("vazio");
+        }
     }
 }
 
@@ -94,6 +102,21 @@ function printMapa() {
             }else if (mapa[x][y] == "praia6") {
                 ctx.drawImage(imagemPraia6, posX, posY, tamanhoQuadrado, tamanhoQuadrado);
             }
+            ctx.font = "50px Arial serif";
+            ctx.fillStyle = "white";
+
+            posX += tamanhoQuadrado/2-10;
+            posY += tamanhoQuadrado/2+10;
+            console.log(mapa2[x][y], posX, posY );
+            if(mapa2[x][y] == "1") {
+                ctx.fillText("1", posX, posY);
+            }else if(mapa2[x][y] == "2") {
+                ctx.fillText("2", posX, posY);
+            }else if(mapa2[x][y] == "3") {
+                ctx.fillText("3", posX, posY);
+            }else if(mapa2[x][y] == "4") {
+                ctx.fillText("4", posX, posY);
+            } 
         }
     }
 }
@@ -131,7 +154,7 @@ async function exportarMapa() {
 // Seleção de botões
 containerBtnn.addEventListener('click', (event) => {
     const botaoClicado = event.target.closest('.btnn');
-    
+     nivelSelecionado = null;
     if (botaoClicado) {
         const imagemDoBotao = botaoClicado.querySelector('img');
         imagemSelecionada = imagemDoBotao;
@@ -145,18 +168,43 @@ containerBtnn.addEventListener('click', (event) => {
     }
 });
 
+// Seleção de botões
+container2Btnn.addEventListener('click', (event) => {
+    const botaoClicado = event.target.closest('.btnn');
+    
+    if (botaoClicado) {
+        const imagemDoBotao = botaoClicado.querySelector('img');
+        nivelSelecionado = imagemDoBotao;
+
+        const botoes = document.querySelectorAll('.btnn');
+        botoes.forEach(btn => {
+            btn.classList.remove('selecionado');
+        });
+        
+        botaoClicado.classList.add('selecionado');
+    }
+});
+
 // Inserção de imagens no mapa
 canvas.addEventListener('click', (event) => {
-    if (imagemSelecionada) {
+    if (imagemSelecionada || nivelSelecionado) {
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
 
         const posX = Math.floor(x / tamanhoQuadrado) * tamanhoQuadrado;
         const posY = Math.floor(y / tamanhoQuadrado) * tamanhoQuadrado;
-
-        const value = imagemSelecionada.getAttribute('value');
-        mapa[posX / 100][posY / 100] = value;
+        var value;
+        if(imagemSelecionada){
+            value = imagemSelecionada.getAttribute('value');
+            mapa[posX / 100][posY / 100] = value;
+        }
+        
+        if(nivelSelecionado){
+            value = nivelSelecionado.getAttribute('value');
+            mapa2[posX / 100][posY / 100] = value;
+        }
+        
 
         printMapa();
     }

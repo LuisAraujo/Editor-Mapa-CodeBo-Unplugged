@@ -92,13 +92,45 @@ canvas{
 
 #container-btnn{
   position: fixed;
-  top: 10px;
+  top: 30px;
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
+#container2-btnn{
+  position: fixed;
+  top: 350px;
+  width: 200px;
+  height: 130px;
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.label{
+  text-align: center;
+  position: fixed;
+  color: #191970;
+  background-color: #fff;
+  width: 200px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+}
+
+#nivel{
+  top: 5px;
+}
+
+#terreno{
+  top: 320px
+}
 .btnn {
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   top: 0px;
   left: 0px;
   z-index: 999;
