@@ -1,4 +1,4 @@
-#botao-gerar {
+.botao {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: white; /* color */
   border-radius: 30px;
@@ -12,6 +12,15 @@
   margin: 4px 2px;
   cursor: pointer;
 }
+
+.botao-mini {
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 
 
 #name{
@@ -122,11 +131,11 @@ canvas{
 }
 
 #nivel{
-  top: 5px;
+  top: 320px
 }
 
 #terreno{
-  top: 320px
+ top: 5px;
 }
 .btnn {
   width: 50px;
@@ -134,9 +143,9 @@ canvas{
   top: 0px;
   left: 0px;
   z-index: 999;
-  border: rgba(0,0,255) 5px solid;
-  filter: grayscale(0.5);
-  -webkit-filter: grayscale(0.5);
+  border: rgba(0,0,255) 3px solid;
+  filter: grayscale(0.7);
+  -webkit-filter: grayscale(0.7);
 }
 
 .btnn img{
@@ -147,14 +156,14 @@ canvas{
 /*Borda adicionada
 Cursor:Pointer add*/
 .btnn:hover {
-  border: rgba(0,0,255) 5px solid;
+  border: rgb(15, 15, 197) 3px solid;
   cursor: pointer;
   filter: grayscale(0);
   -webkit-filter: grayscale(0);
 }
 
 .btnn.selecionado {
-  border: 5px solid red;
+  border: 3px solid rgb(199, 255, 14);
   filter: grayscale(0);
 }
 
@@ -210,4 +219,37 @@ Cursor:Pointer add*/
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+#modal-alert{
+  position: fixed;
+  top: 200px;
+  left: calc( 50% - 200px);
+  width: 400px;
+  height: 300px;
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+#modal-alert .titulo{
+  color: #191970;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+#modal-alert #modal-texto{
+  color: #28282c;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#botao-fechar-modal{
+  margin-top: 10px;
+  margin-left: calc( 50% - 20px);
 }

@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
+    <div id="modal-alert" style="display: none;">
+        <div class="titulo"> Alerta! </div>
+        <div id="modal-texto"> teste teste teste </div>
+        <button onclick="ocultaModal()" id="botao-fechar-modal" class="botao botao-mini">Fechar</button>
+    </div>
+
     <center>
     <div>
         <div><img src="images/logo.png" id="logo" alt="Logo" width="450px"></div>
@@ -21,9 +28,9 @@
                 <option value="2">Privado</option>
             </select>
         </div>
-        <button onclick="gerarMapa()" id="botao-gerar">Gerar Mapa</button>
-        <button onclick="salvarMapa()" id="botao-salvar">Salvar Mapa</button>
-        <button onclick="exportarMapa()" id="botao-exportar">Exportar Mapa</button>
+        <button onclick="gerarMapa()" id="botao-gerar" class="botao">Gerar Mapa</button>
+        <button onclick="salvarMapa()" id="botao-salvar" class="botao">Salvar Mapa</button>
+        <button onclick="exportarMapa()" id="botao-exportar" class="botao">Exportar Mapa</button>
         <p></p>
 
     </div>

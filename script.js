@@ -1,8 +1,10 @@
 let mapa = [];
 let mapa2 = [];
 let tamanhoQuadrado = 100;
-
-alert("Atenção: Este editor ainda não armazena informações");
+mapaInicializado = false;
+modalText = document.getElementById("modal-texto");
+modal = document.getElementById("modal-alert");
+//alert("Atenção: Este editor ainda não armazena informações");
 
 // Referências de imagens
 let imagemInicio = document.getElementById('img-inicio');
@@ -29,25 +31,26 @@ const containerBtnn = document.getElementById('container-btnn');
 const container2Btnn = document.getElementById('container2-btnn');
 
 function gerarMapa() {
+    mapaInicializado = true;
     largura = document.getElementById('width').value;
     altura = document.getElementById('height').value;
     if(altura > 4){
-        alert("Altura acima do máximo (4)");
+        exibeModal("Altura acima do máximo (4)");
         return;
     }else if(largura > 6){
-        alert("Largura acima do máximo (6)");
+        exibeModal("Largura acima do máximo (6)");
         return;
     }
     inicializadorArray(largura, altura);
 
     if (largura <= 0 || altura <= 0) {
-        alert("Largura e altura devem ser maiores que zero.");
+        exibeModal("Largura e altura devem ser maiores que zero.");
         return;
     } else {
         largura = parseInt(largura);
         altura = parseInt(altura);
         if (isNaN(largura) || isNaN(altura)) {
-            alert("Por favor, insira apenas números.");
+            exibeModal("Por favor, insira apenas números.");
             return;
         }
     }
@@ -127,7 +130,7 @@ async function exportarMapa() {
     const titulo = document.getElementById('name').value.trim();
 
     if (!titulo) {
-        alert("Por favor, insira um título para salvar o mapa.");
+        exibeModal("Por favor, insira um título para salvar o mapa.");
         return;
     }
 
@@ -154,7 +157,7 @@ async function exportarMapa() {
 // Seleção de botões
 containerBtnn.addEventListener('click', (event) => {
     const botaoClicado = event.target.closest('.btnn');
-     nivelSelecionado = null;
+    nivelSelecionado = null;
     if (botaoClicado) {
         const imagemDoBotao = botaoClicado.querySelector('img');
         imagemSelecionada = imagemDoBotao;
@@ -171,7 +174,7 @@ containerBtnn.addEventListener('click', (event) => {
 // Seleção de botões
 container2Btnn.addEventListener('click', (event) => {
     const botaoClicado = event.target.closest('.btnn');
-    
+    imagemSelecionada = null;
     if (botaoClicado) {
         const imagemDoBotao = botaoClicado.querySelector('img');
         nivelSelecionado = imagemDoBotao;
@@ -187,7 +190,9 @@ container2Btnn.addEventListener('click', (event) => {
 
 // Inserção de imagens no mapa
 canvas.addEventListener('click', (event) => {
-    if (imagemSelecionada || nivelSelecionado) {
+    if(!mapaInicializado){
+        exibeModal("Por favor, gere um mapa!");
+    }else if (imagemSelecionada || nivelSelecionado) {
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
@@ -204,9 +209,10 @@ canvas.addEventListener('click', (event) => {
             value = nivelSelecionado.getAttribute('value');
             mapa2[posX / 100][posY / 100] = value;
         }
-        
 
         printMapa();
+    }else{
+        exibeModal("Selecione um nivel ou um terreno.")
     }
 });
 
@@ -260,4 +266,16 @@ function listarMapas() {
     .catch(error => {
          console.log(error);
     });
+}
+
+
+function exibeModal( text ){
+    modalText.innerHTML = text;
+    modal.style.display = "block";
+}
+
+
+function ocultaModal(  ){
+    modalText.innerHTML = "";
+    modal.style.display = "none";
 }
