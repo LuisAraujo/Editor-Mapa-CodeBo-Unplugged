@@ -1,5 +1,8 @@
-.botao {
+body{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.botao {
   background-color: white; /* color */
   border-radius: 30px;
   border: 2px solid black; /* Black Border */
@@ -19,6 +22,7 @@
   font-size: 10px;
   margin: 4px 2px;
   cursor: pointer;
+
 }
 
 
@@ -26,7 +30,6 @@
 #name{
     background-color: white;
     font-weight: bold;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 30%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -43,7 +46,6 @@
 #height {
     background-color: white;
     font-weight: bold;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 15%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -61,7 +63,6 @@
 #width {
     background-color: white;
     font-weight: bold;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 15%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -226,13 +227,14 @@ Cursor:Pointer add*/
   top: 200px;
   left: calc( 50% - 200px);
   width: 400px;
-  height: 300px;
   background-color: #fff;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+  padding: 10px;
+  border: solid 1px #aba8b7;
 }
 
 #modal-alert .titulo{
@@ -240,6 +242,7 @@ Cursor:Pointer add*/
   text-align: center;
   font-weight: bold;
   font-size: 30px;
+  margin-bottom: 10px;
 }
 
 #modal-alert #modal-texto{
@@ -247,6 +250,7 @@ Cursor:Pointer add*/
   text-align: center;
   font-weight: bold;
   font-size: 20px;
+  height: 70px;
 }
 
 #botao-fechar-modal{
